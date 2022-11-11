@@ -1,0 +1,19 @@
+{% extends 'student/s_dash.html' %}
+{% block content %}
+
+
+{% for i in studentdata_form %}
+
+                <div class="card" align="center">
+					<img src="{{i.photo.url}}" style="width:150px;height:160px;"/>
+
+                        <h3>{{i.name}}</h3>
+                        <p>{{i.address}}</p>
+					    <p>{{i.gender}}</p>
+                         <p>{{i.DoB}}</p>
+
+					{% endfor %}
+                </div>
+
+{% csrf_token %}
+{% endblock %}

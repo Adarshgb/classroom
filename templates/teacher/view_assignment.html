@@ -1,0 +1,32 @@
+{% extends 'teacher/dash.html' %}
+{% load crispy_forms_filters %}
+
+{% block content %}
+
+
+
+<div class="col-lg-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Assignments</h4>
+                  <div class="table-responsive">
+                    <table class="table table-striped">
+                      <thead>
+                        <tr>
+                          <th>sl No.</th>
+                          <th>name</th>
+                          <th>assignment</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      {% for i in form %}
+                        <tr>
+                          <td class="py-1">{{ forloop.counter }}</td>
+                          <td>{{ i.studentname }}</td>
+                          <td><a href= "{{ i.assignment.url }}" download>{{i.assignment}}</a></td>
+                          </td>
+                        </tr>
+
+                      {% endfor %}
+
+{% endblock %}

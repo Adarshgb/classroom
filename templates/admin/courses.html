@@ -1,0 +1,43 @@
+{% extends 'admin/admin.html' %}
+{% block content %}
+
+<div class="col-lg-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Course Details</h4>
+                  <div class="table-responsive">
+                    <table class="table table-striped">
+                      <thead>
+                        <tr>
+                          <th>sl No.</th>
+                          <th>PHOTO</th>
+                          <th>NAME</th>
+                          <th>SUBJECT</th>
+                          <th>delete</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      {% for i in courseform %}
+                        <tr>
+                          <td class="py-1">{{ forloop.counter }}</td>
+                          <td>{{ i.discription}}</td>
+                          <td>{{ i.course }}</td>
+                          <td>{{ i.teachername }}</td>
+
+                          <td>
+                            <form action="{% url 'coursedelete' i.id %}" method="post">
+                                {% csrf_token %}
+                                <input type="submit" class="btn btn-danger" value="delete"/>
+                            </form>
+                          </td>
+                        </tr>
+
+                      {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+{% endblock %}

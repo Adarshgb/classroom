@@ -1,0 +1,65 @@
+{% extends 'student/s_dash.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+
+
+    {% for message in messages %}
+        <div class="alert alert-info" role="alert">
+            {{message}}
+        </div>
+        {% endfor %}
+     <div class="col-md-12">
+    <form method="post">{% csrf_token %}
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="media align-items-center">
+                        <div class="media-left">
+                            <h4 class="m-0 text-primary mr-2"><strong></strong></h4>
+                        </div>
+                        <div class="media-body">
+                            <h4 class="card-title m-0">
+
+                            </h4>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-body"><h3>Exam</h3><br><br>
+
+                    {% for q in questions %}
+
+
+
+
+                    {{forloop.counter}})&nbsp&nbsp
+
+
+                    {{q.question}}<br><br><br>
+
+                (A)&nbsp&nbsp<input type="radio" id="optiona" name="{{q.question}}" value="option1">
+                   <label for="optiona">{{q.option_1}}</label><br>
+                (B)&nbsp&nbsp<input type="radio" id="optionb" name="{{q.question}}" value="option2">
+                   <label for="optionb">{{q.option_2}}</label><br>
+                (C)&nbsp&nbsp<input type="radio" id="optionc" name="{{q.question}}" value="option3">
+                   <label for="optionc">{{q.option_3}}</label><br>
+                (D)&nbsp&nbsp<input type="radio" id="optiond" name="{{q.question}}" value="option4">
+                   <label for="optiond">{{q.option_4}}</label><br><br><br>
+
+                    {% endfor %}
+
+
+                </div>
+                <div class="card-footer">
+
+                    <button class="btn btn-success float-center" type="submit">Submit <i
+                            class="material-icons btn__icon--right"></i></button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+     </div></div>
+
+{% endblock %}

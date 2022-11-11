@@ -1,0 +1,59 @@
+{% extends 'teacher/dash.html' %}
+{% load crispy_forms_filters %}
+
+{% block content %}
+
+<div class="col-lg-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">questions</h4>
+                  <div class="table-responsive">
+                    <table class="table table-striped">
+                      <thead>
+                        <tr>
+                          <th>sl No.</th>
+                          <th>question</th>
+                          <th>option 1</th>
+                          <th>option 2</th>
+                          <th>option 3</th>
+                          <th>option 4</th>
+                          <th>answer</th>
+                          <th>Action</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      {% for i in data %}
+                        <tr>
+                          <td class="py-1">{{ forloop.counter }}</td>
+                          <td>{{ i.question }}</td>
+                          <td>{{ i.option_1 }}</td>
+                          <td>{{ i.option_2 }}</td>
+                          <td>{{ i.option_3 }}</td>
+                          <td>{{ i.option_4 }}</td>
+                          <td><h5>{{ i.Ans}}</h5></td>
+                          <td>
+                            <form action="{% url 'delete_question' i.id %}" method="post">
+                                {% csrf_token %}
+                                <input type="submit" class="btn btn-danger" value="delete "/>
+                            </form>
+
+
+                            <form action="{% url 'question_update' i.id %}" method="post">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-info">update</button>
+                            </form>
+                          </td>
+
+
+                        </tr>
+
+                      {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+{% endblock %}

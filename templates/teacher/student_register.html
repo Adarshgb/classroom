@@ -1,0 +1,12 @@
+{% extends 'teacher/dash.html' %}
+
+{% block content %}
+{% load crispy_forms_filters %}
+
+<form method="post" enctype="multipart/form-data">
+{{login_form|crispy}}
+{{studentdata_form|crispy}}
+{% csrf_token %}
+<button type="submit">submit</button>
+</form>
+{% endblock %}

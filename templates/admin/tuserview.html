@@ -1,0 +1,60 @@
+{% extends 'admin/admin.html' %}
+{% block content %}
+
+<div class="col-lg-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">T E A C H E R S</h4>
+                  <div class="table-responsive">
+                    <table class="table table-striped">
+                      <thead>
+                        <tr>
+                          <th>sl No.</th>
+                          <th>PHOTO</th>
+                          <th>NAME</th>
+                          <th>SUBJECT</th>
+                          <th>GENDER</th>
+                          <th>DOB</th>
+                          <th>Action</th>
+                          <th>delete</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      {% for i in teacherdata_form %}
+                        <tr>
+                          <td class="py-1">{{ forloop.counter }}</td>
+                          <td><img src="{{i.photo.url}}" style="width:50px;height:60px;"/> </td>
+                          <td>{{ i.name }}</td>
+                          <td>{{ i.subject }}</td>
+                          <td>{{ i.gender }}</td>
+                          <td>{{ i.DoB }}</td>
+
+                          <td class="text-centert">
+                             <div class="actions">
+                                 {% if i.status == 0 %}
+                                 <a href="{% url 'approve_teacher' i.id %}" class="btn btn-success">Approve</a>
+                                 <a href="{% url 'reject_teacher' i.id %}" class="btn btn-primary">disapprove</a>
+                                 {% elif i.status == 1 %}
+                                  <button class="btn btn-success" disabled="disabled">Approved</button>
+                                 {% else %}
+                                  <button class="btn btn-primary" disabled="disabled">disapproved</button>
+                                 {% endif %}
+                             </div>
+                          </td>
+                          <td>
+                            <form action="{% url 'tdelete' i.id %}" method="post">
+                                {% csrf_token %}
+                                <input type="submit" class="btn btn-danger" value="delete"/>
+                            </form>
+                          </td>
+                        </tr>
+
+                      {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+{% endblock %}
